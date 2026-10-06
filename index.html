@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Programista naszych czasów</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0b14;--panel:#171326;--line:#2c2547;--text:#ece8f8;--muted:#a49cc0;--accent:#9d6bff;--accent2:#c9a8ff;--ok:#5fd6a0;--err:#ff7a90;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(rgba(13,11,20,.8),rgba(13,11,20,.8)),url(grafiki/tlo.jpg) center/cover fixed var(--bg);color:var(--text);font-family:'Sora',system-ui,sans-serif;line-height:1.6}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 24px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{background:none;border:1px solid transparent;color:var(--muted);padding:8px 14px;border-radius:8px;font:inherit;cursor:pointer}
+nav button[aria-current="page"]{color:var(--text);border-color:var(--accent);background:var(--panel)}
+nav button:hover{color:var(--text)}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+main{max-width:920px;margin:0 auto;padding:32px 24px 64px}
+section[hidden]{display:none}
+h1{font-size:clamp(2rem,6vw,3.6rem);line-height:1.1;margin:0 0 16px;font-weight:800}
+h2{margin:0 0 12px}
+.lead{color:var(--muted);max-width:60ch}
+.hero{display:grid;gap:28px;grid-template-columns:1.2fr 1fr;align-items:center;margin-bottom:32px}
+.editor{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;color:var(--accent2);overflow-x:auto;white-space:pre}
+.editor i{color:var(--muted);font-style:normal}
+#heroImg{width:100%;border-radius:12px;margin-top:12px}
+.btn{background:var(--accent);color:#120a24;border:0;padding:11px 20px;border-radius:8px;font:inherit;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--accent2)}
+.btn.ghost{background:none;color:var(--text);border:1px solid var(--line)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:28px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:8px;margin-bottom:12px}
+.card h3{margin:0 0 6px;font-size:1rem;color:var(--accent2)}
+.card p{margin:0;color:var(--muted);font-size:.92rem}
+form{display:grid;gap:12px;grid-template-columns:2fr 1fr 1fr auto;align-items:end;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+label{display:grid;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px;font:inherit;width:100%}
+.msg{min-height:1.6em;margin:12px 0;font-size:.92rem}
+.msg.ok{color:var(--ok)}.msg.err{color:var(--err)}
+.tools{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 16px}
+.tools input{max-width:260px}
+ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+li{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.tag{font-size:.78rem;color:var(--accent2);border:1px solid var(--line);border-radius:99px;padding:2px 10px;margin-left:8px}
+li button{background:none;border:0;color:var(--err);cursor:pointer;font:inherit}
+.q{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.opt{display:block;width:100%;text-align:left;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:12px;margin-top:8px;font:inherit;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.bar{height:6px;background:var(--line);border-radius:4px;margin-bottom:16px}
+.bar div{height:100%;background:var(--accent);border-radius:4px;transition:width .3s}
+footer{text-align:center;color:var(--muted);font-size:.82rem;padding:24px;border-top:1px solid var(--line)}
+@media(max-width:720px){.hero{grid-template-columns:1fr}form{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <img src="grafiki/logo.png" width="34" height="34" alt="Logo aplikacji" style="border-radius:9px">
+    Dev<span style="color:var(--accent)">Nowoczesny</span>
+  </div>
+  <nav aria-label="Główna nawigacja">
+    <button data-v="start" aria-current="page">Start</button>
+    <button data-v="skills">Umiejętności</button>
+    <button data-v="quiz">Quiz</button>
+  </nav>
+</header>
+<main>
+<section id="start">
+  <div class="hero">
+    <div>
+      <h1>Programista naszych czasów</h1>
+      <p class="lead">Kiedyś programista pisał każdą linijkę sam. Dziś opisuje problem, współpracuje z AI, sprawdza wynik i odpowiada za jakość. Ta aplikacja pomaga ocenić własny profil i śledzić umiejętności.</p>
+      <p><button class="btn" data-go="skills">Dodaj umiejętności</button> <button class="btn ghost" data-go="quiz">Zrób quiz</button></p>
+    </div>
+    <div>
+      <div class="editor" aria-hidden="true"><i>// dzień programisty</i>
+const dev = {
+  narzędzia: ["AI", "Git", "DevTools"],
+  pracuje: "z promptami i kodem",
+  zawsze: "testuje wynik"
+};</div>
+      <img id="heroImg" src="grafiki/hero.jpg" width="1400" height="787" alt="Grafika nagłówkowa wygenerowana przez AI" onerror="this.remove()">
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card"><img src="grafiki/problemy.jpg" alt="Żarówka i schemat blokowy" loading="lazy"><h3>Myśli w problemach</h3><p>Liczy się zrozumienie, co trzeba zbudować i dlaczego, a nie tylko składnia.</p></div>
+    <div class="card"><img src="grafiki/ai.jpg" alt="Ręka człowieka i robota z oknem kodu" loading="lazy"><h3>Współpracuje z AI</h3><p>Dobry prompt to nowa umiejętność. Kod z AI trzeba jednak zawsze przeczytać i sprawdzić.</p></div>
+    <div class="card"><img src="grafiki/nauka.jpg" alt="Stos książek prowadzący do laptopa" loading="lazy"><h3>Uczy się ciągle</h3><p>Technologie zmieniają się szybko, więc stałe nawyki nauki są ważniejsze niż jeden framework.</p></div>
+  </div>
+</section>
+
+<section id="skills" hidden>
+  <h2>Moje umiejętności</h2>
+  <form id="f" novalidate>
+    <label>Nazwa umiejętności<input id="name" maxlength="30" placeholder="np. JavaScript" autocomplete="off"></label>
+    <label>Kategoria<select id="cat"><option>Programowanie</option><option>Narzędzia</option><option>AI</option><option>Sieci</option></select></label>
+    <label>Poziom<select id="lvl"><option>Początkujący</option><option>Średni</option><option>Zaawansowany</option></select></label>
+    <button class="btn" type="submit">Dodaj</button>
+  </form>
+  <div class="msg" id="msg" role="status" aria-live="polite"></div>
+  <div class="tools">
+    <input id="q" type="search" placeholder="Szukaj…" aria-label="Szukaj umiejętności">
+    <select id="fc" aria-label="Filtruj po kategorii"><option value="">Wszystkie kategorie</option><option>Programowanie</option><option>Narzędzia</option><option>AI</option><option>Sieci</option></select>
+  </div>
+  <ul id="list"></ul>
+</section>
+
+<section id="quiz" hidden>
+  <h2>Czy jesteś programistą naszych czasów?</h2>
+  <div class="bar"><div id="prog" style="width:0"></div></div>
+  <div id="qbox" class="q"></div>
+</section>
+</main>
+<footer>Artem Lupyr · grupa 8208 · projekt Vibe Coding</footer>
+
+<script>
+(function(){
+var views=['start','skills','quiz'];
+function show(v){
+  views.forEach(function(id){document.getElementById(id).hidden=(id!==v)});
+  document.querySelectorAll('nav button').forEach(function(b){
+    if(b.dataset.v===v)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
+  });
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('[data-v]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.v)})});
+document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go)})});
+
+/* Umiejętności */
+var skills=[];
+try{skills=JSON.parse(localStorage.getItem('skills')||'[]')}catch(e){skills=[]}
+function save(){try{localStorage.setItem('skills',JSON.stringify(skills))}catch(e){}}
+var msg=document.getElementById('msg');
+function say(t,ok){msg.textContent=t;msg.className='msg '+(ok?'ok':'err')}
+function render(){
+  var q=document.getElementById('q').value.trim().toLowerCase(),fc=document.getElementById('fc').value;
+  var ul=document.getElementById('list');ul.innerHTML='';
+  var rows=skills.filter(function(s){return (!q||s.name.toLowerCase().indexOf(q)>-1)&&(!fc||s.cat===fc)});
+  if(!rows.length){var li=document.createElement('li');li.textContent=skills.length?'Brak wyników dla tych filtrów.':'Lista jest pusta. Dodaj pierwszą umiejętność.';ul.appendChild(li);return}
+  rows.forEach(function(s){
+    var li=document.createElement('li'),sp=document.createElement('span');
+    sp.textContent=s.name;
+    var t=document.createElement('span');t.className='tag';t.textContent=s.cat+' · '+s.lvl;sp.appendChild(t);
+    var d=document.createElement('button');d.textContent='Usuń';d.setAttribute('aria-label','Usuń '+s.name);
+    d.addEventListener('click',function(){skills=skills.filter(function(x){return x.id!==s.id});save();render();say('Usunięto: '+s.name,true)});
+    li.appendChild(sp);li.appendChild(d);ul.appendChild(li);
+  });
+}
+document.getElementById('f').addEventListener('submit',function(e){
+  e.preventDefault();
+  var n=document.getElementById('name').value.trim();
+  if(n.length<2){say('Nazwa musi mieć co najmniej 2 znaki.',false);return}
+  if(skills.some(function(s){return s.name.toLowerCase()===n.toLowerCase()})){say('Taka umiejętność już jest na liście.',false);return}
+  skills.push({id:Date.now(),name:n,cat:document.getElementById('cat').value,lvl:document.getElementById('lvl').value});
+  save();render();say('Dodano: '+n,true);
+  document.getElementById('name').value='';
+});
+document.getElementById('q').addEventListener('input',render);
+document.getElementById('fc').addEventListener('change',render);
+render();
+
+/* Quiz */
+var Q=[
+ {t:'Dostajesz kod wygenerowany przez AI. Co robisz?',o:['Wklejam do projektu','Czytam, testuję i poprawiam','Proszę AI o kolejny kod'],a:1},
+ {t:'Aplikacja działa wolno. Gdzie zaczynasz szukać przyczyny?',o:['W panelu Performance lub Lighthouse','Wymieniam komputer','Dodaję więcej kodu'],a:0},
+ {t:'Który prompt jest najlepszy?',o:['Zrób stronę','Zrób ciemną stronę z listą zadań, walidacją formularza i widokiem mobilnym','Zrób coś ładnego'],a:1},
+ {t:'Do czego służy Git?',o:['Do wersjonowania kodu','Do generowania grafik','Do kompresji zdjęć'],a:0}
+];
+var i=0,score=0,box=document.getElementById('qbox'),prog=document.getElementById('prog');
+function ask(){
+  prog.style.width=(i/Q.length*100)+'%';
+  if(i>=Q.length){
+    var r=score===Q.length?'Pełny profil programisty naszych czasów!':score>=Q.length-1?'Bardzo dobrze, brakuje niewiele.':score>=2?'Dobry początek. Warto ćwiczyć dalej.':'Czas na więcej nauki i praktyki.';
+    box.innerHTML='';
+    var h=document.createElement('h3');h.textContent='Wynik: '+score+' / '+Q.length;
+    var p=document.createElement('p');p.textContent=r;
+    var b=document.createElement('button');b.className='btn';b.textContent='Zacznij od nowa';
+    b.addEventListener('click',function(){i=0;score=0;ask()});
+    box.appendChild(h);box.appendChild(p);box.appendChild(b);return;
+  }
+  var q=Q[i];box.innerHTML='';
+  var h=document.createElement('h3');h.textContent=(i+1)+'. '+q.t;box.appendChild(h);
+  q.o.forEach(function(t,k){
+    var b=document.createElement('button');b.className='opt';b.textContent=t;
+    b.addEventListener('click',function(){if(k===q.a)score++;i++;ask()});
+    box.appendChild(b);
+  });
+}
+ask();
+})();
+</script>
+</body>
+</html>
